@@ -5,13 +5,15 @@ import { TextInput, TouchableOpacity, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { Text } from "native-base";
 
+
 import styles from "./styles";
+import authStore from "../Stores/authStore";
 
 class Register extends Component {
   state = {
     username: "",
     password: "",
-    companyName: ""
+    email: ""
   };
   handleChange = (name, text) => {
     console.log("TEXT", text);
@@ -26,27 +28,28 @@ class Register extends Component {
 
           <TextInput
             style={styles.authTextInput}
-            placeholder="Username"
+            placeholder="Company Name"
             placeholderTextColor="#A6AEC1"
             onChangeText={text => this.handleChange("username", text)}
           />
         
         <TextInput
           style={styles.authTextInput}
-          placeholder="Company Name"
+          placeholder="Email"
           placeholderTextColor="#A6AEC1"
-          onChangeText={text => this.handleChange("companyName", text)}
+          onChangeText={text => this.handleChange("email", text)}
         />
         <TextInput
           style={styles.authTextInput}
           placeholder="Password"
           placeholderTextColor="#A6AEC1"
+          secureTextEntry={true}
           onChangeText={text => this.handleChange("password", text)}
         />
         <TouchableOpacity style={styles.authButton}>
           <Text
             style={styles.authButtonText}
-            onPress={() => navigation.navigate("EventScreen")}
+            onPress={() => authStore.register(this.state,{navigation})}
           >
             Sign up
           </Text>
