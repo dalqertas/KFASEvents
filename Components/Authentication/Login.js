@@ -6,6 +6,8 @@ import { Image, TextInput, TouchableOpacity, View } from "react-native";
 import { Text } from "native-base";
 import styles from "./styles";
 import authStore from "../Stores/authStore";
+import organizerStackNav from "../Navigation/organizerStackNav";
+
 
 class Login extends Component {
   state ={
@@ -35,7 +37,7 @@ class Login extends Component {
           secureTextEntry={true}
           onChangeText={(text) =>this.handleChange('password',text)}
         />
-        <TouchableOpacity style={styles.authButton} onPress={() =>authStore.login(this.state,{navigation})}>
+        <TouchableOpacity style={styles.authButton} onPress={() =>authStore.login(this.state,this.props.navigation)}>
           <Text style={styles.authButtonText}>Log in</Text>
         </TouchableOpacity>
         <Text style={styles.authOther} onPress= {() => navigation.navigate("RegisterScreen")}>Click here to register!</Text>

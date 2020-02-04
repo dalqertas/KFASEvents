@@ -27,6 +27,47 @@ const styles = StyleSheet.create({
   card:{
       marginLeft:10,
       marginRight:10
+  },
+  authContainer: {
+    flex: 1,
+    alignSelf: "stretch",
+    justifyContent: "flex-start",
+    alignItems: "center",
+    paddingRight: 32,
+    paddingLeft:32,
+    paddingTop:46,
+    backgroundColor:"#ECF0F1"
+  },
+  authTextInput: {
+    alignSelf: "stretch",
+    textAlign: "left",
+    height: 40,
+    marginBottom: 20,
+    color: "#9C67BD",
+    //borderColor: "darkgray",
+    //borderWidth: 1,
+    borderRadius:8,
+    padding:5,
+    paddingLeft:8,
+    fontSize:16,
+    backgroundColor:"white"
+  },
+  authTitle: {
+    alignSelf: "stretch",
+    textAlign:"left",
+    color: "#9C67BD",
+    fontSize: 24,
+    marginBottom: 20,
+    borderBottomColor: "#9C67BD"
+  },
+  authTextBtn: {
+    alignSelf: "stretch",
+    alignItems: "center",
+    padding: 5,
+    backgroundColor: "#9C67BD",
+    marginBottom: 20,
+    borderRadius:8,
+    color:"white"
   }
 });
 export default styles;

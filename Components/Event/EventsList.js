@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import { Container ,Content} from "native-base";
 import EventItem from "./EventItem";
+import { observer } from "mobx-react";
 import styles from "./styles";
+import CreateButton from "../Buttons/CreateButton";
+
 
 const EventsList= () =>{
     return(
@@ -9,6 +12,7 @@ const EventsList= () =>{
     )
 }
 EventsList.navigationOptions={
-    title: "Events"
+    title: "Events",
+    headerRight:()=><CreateButton/>,
   }
-export default EventsList;
+export default observer(EventsList);

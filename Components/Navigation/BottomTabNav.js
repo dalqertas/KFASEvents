@@ -1,10 +1,10 @@
 import { createBottomTabNavigator } from "react-navigation-tabs";
-import authStackNav from "./authStackNav";
+import authSwitchNav from "./authSwitchNav";
 import userStackNav from "./userStackNav";
 
 const BottomTabNav = createBottomTabNavigator({
     Home: userStackNav,
-    Profile: authStackNav
+    Profile: authSwitchNav
   });
   
   export default BottomTabNav;

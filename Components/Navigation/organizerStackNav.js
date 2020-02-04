@@ -1,9 +1,12 @@
 import { createStackNavigator } from "react-navigation-stack";
 import EventsList from "../Event/EventsList";
+import CreateEvent from "../Event/CreateEvent";
+
 
 const organizerStackNav = createStackNavigator(
   {
-    EventScreen:EventsList
+    EventScreen:EventsList,
+    CreateEventScreen:CreateEvent
   },
   {
     initialRouteName: "EventScreen",
@@ -11,7 +14,7 @@ const organizerStackNav = createStackNavigator(
       headerTintColor: "#9C67BD",
       headerTitleStyle: {
         fontWeight: "bold"
-      }
+      },
     }
   }
 );

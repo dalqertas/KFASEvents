@@ -49,7 +49,7 @@ class Register extends Component {
         <TouchableOpacity style={styles.authButton}>
           <Text
             style={styles.authButtonText}
-            onPress={() => authStore.register(this.state,{navigation})}
+            onPress={() => authStore.register(this.state,this.props.navigation)}
           >
             Sign up
           </Text>

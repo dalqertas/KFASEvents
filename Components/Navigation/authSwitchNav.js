@@ -1,10 +1,10 @@
-import { createStackNavigator } from "react-navigation-stack";
+import {createSwitchNavigator} from "react-navigation";
 import Login from "../Authentication/Login";
 import Register from "../Authentication/Register";
 import organizerStackNav from "./organizerStackNav";
 
 
-const authStackNav = createStackNavigator(
+const authSwitchNav = createSwitchNavigator(
   {
     LoginScreen: Login,
     RegisterScreen: Register,
@@ -21,4 +21,4 @@ const authStackNav = createStackNavigator(
   }
 );
 
-export default authStackNav;
+export default authSwitchNav;
