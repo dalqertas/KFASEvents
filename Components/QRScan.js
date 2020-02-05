@@ -16,7 +16,7 @@ const QRScan = () => {
 
   const getData = async (attendee_id) => {
     try {
-      let res = await axios.put(`event/attendees/checkin/${attendee_id}`);
+      let res = await axios.put(`http://event-managment-coded.herokuapp.com/event/attendees/checkin/${attendee_id}`);
       alert("Checked in!");
     } catch (error) {
       console.log(error);
