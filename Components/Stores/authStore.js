@@ -2,7 +2,7 @@ import { decorate, observable, computed } from "mobx";
 
 import jwt_decode from "jwt-decode";
 import { AsyncStorage } from "react-native";
-import { instance } from "./instance";
+import instance from "./instance";
 class AuthStore {
   user = null;
 
@@ -35,7 +35,7 @@ class AuthStore {
     let user;
     if (token) {
       await AsyncStorage.setItem("token", token);
-      instance.defaults.headers.common.Authorization = `jwt ${token}`;
+      instance.defaults.headers.common.Authorization = `Bearer ${token}`;
       user = jwt_decode(token);
       console.log("i came here");
       navigation.navigate('EventScreen')

@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 
 // Styling Components
+
 import { Image, TextInput, TouchableOpacity, View , ScrollView} from "react-native";
+
 import DateTimePicker from "@react-native-community/datetimepicker";
 
 import { Text, Icon } from "native-base";
