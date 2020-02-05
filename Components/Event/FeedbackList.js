@@ -4,6 +4,8 @@ import FeedbackItem from "./FeedbackItem";
 import { observer } from "mobx-react";
 import store from "../Stores/store";
 import {Content, List} from "native-base";
+import HeaderButtons from "../Buttons/HeaderButtons";
+import EventDetails from "./EventDetails";
 
 class FeedbackList extends Component {
 
@@ -31,5 +33,11 @@ class FeedbackList extends Component {
         );
     }
 }
+
+FeedbackList.navigationOptions = ({ navigation }) => {
+    return {
+        title: "Feedback"
+    };
+};
 
 export default observer(FeedbackList);

@@ -9,7 +9,7 @@ import LoginButton from "../Buttons/LoginButton";
 import { Button } from "react-native";
 
 const EventsList= ({navigation}) =>{
-    const events = store.events.map(event => <EventItem event={event}/>);
+    const events = store.events.map(event => <EventItem event={event} key={event.id}/>);
 
     return(
         <Content>
@@ -21,8 +21,8 @@ const EventsList= ({navigation}) =>{
 EventsList.navigationOptions=({navigation})=>{
     return {
         title: "Events",
-        headerRight:()=><CreateButton/>,
+        headerRight:()=><CreateButton navigation={navigation}/>,
         headerLeft:()=><LoginButton />
     };
-  }
+  };
 export default observer(EventsList);

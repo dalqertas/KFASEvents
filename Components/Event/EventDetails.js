@@ -13,10 +13,41 @@ import {
 } from "native-base";
 import styles from "./styles";
 import HeaderButtons from "../Buttons/HeaderButtons";
+
 import authStore from "../Stores/authStore";
+import EventStore from "../Stores/store";
 
 const EventDetails = ({ navigation }) => {
     const event = navigation.getParam("event");
+
+    const markEventDone = () => {
+        EventStore.eventDone(event, (err) => {
+            if (err) {
+
+                return;
+            }
+
+            alert("Event successfully marked")
+        });
+    };
+
+    const adminActions = () => {
+        console.log('check event');
+        console.log(event.id);
+        return authStore.user && authStore.user.user_id === event.created_by.id ?
+            <>
+                <TouchableOpacity style={styles.authTextBtn} onPress={() => navigation.navigate("FeedbackListScreen", {event: event})}>
+                    <Text style={styles.text}>Attendees Feedback</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.authTextBtn} onPress={() => markEventDone()}>
+                    <Text style={styles.text}>Mark Event Over</Text>
+                </TouchableOpacity>
+            </>
+            :
+            <TouchableOpacity style={styles.authTextBtn} onPress={() => navigation.navigate("RegisterAttendee", {eventID: event.id})}>
+                <Text style={styles.text}>Register</Text>
+            </TouchableOpacity>
+    };
 
     return (
         <Container>
@@ -27,9 +58,9 @@ const EventDetails = ({ navigation }) => {
                         "https://www.amevents.com/wp-content/uploads/2018/05/banner-1.jpg"
                     }}
                     style={{height: 500, width: null, flex: 1}}
-                ></ImageBackground>
+                />
 
-                <Text style={{fontWeight: "bold", fontSize: 20, margin: 25}}>{event.title}</Text>
+                <Text style={{fontWeight: "bold", fontSize: 20, marginHorizontal: 24, marginVertical: 16}}>{event.title}</Text>
 
                 <Body style={{flexDirection: "row"}}>
                     <Body style={styles.textContainer}>
@@ -49,10 +80,10 @@ const EventDetails = ({ navigation }) => {
                 <Text style={{fontSize: 15, margin: 25}}>{event.desc}</Text>
                 <Text style={{fontSize: 15, margin: 25}}>Organized By: {event.created_by.username}</Text>
 
-                <View style={{...styles.authContainer, backgroundColor: "white"}}>
-                    {authStore.user == null && <TouchableOpacity style={styles.authTextBtn} onPress={() => navigation.navigate("RegisterAttendee", {eventID: event.id})}>
-                        <Text style={styles.text}>Register</Text>
-                    </TouchableOpacity>}
+                <View style={{...styles.authContainer, padding: 24, backgroundColor: "white"}}>
+                    {
+                        adminActions()
+                    }
                 </View>
             </ScrollView>            
         </Container>
@@ -66,6 +97,6 @@ EventDetails.navigationOptions = ({ navigation }) => {
             <HeaderButtons event={navigation.getParam("event")}/>
         )
     };
-}
+};
 
 export default EventDetails;

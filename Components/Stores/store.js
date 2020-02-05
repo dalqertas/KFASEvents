@@ -34,8 +34,11 @@ class Store {
     getFeedback = async (eventID, callback) => {
         console.log("getting feedback");
         try {
-            const res = await instance.get(`event/attendees/${eventID}`);
-            this.feedback[eventID] = res.data;
+            const res = await instance.get(`feedback/${eventID}`);
+            const validFeedbacks = res.data.filter(feedback => {
+                return feedback.rating !== null && feedback.comment !== null
+            });
+            this.feedback[eventID] = validFeedbacks;
             console.log(this.feedback[eventID]);
 
             callback();
@@ -64,8 +67,17 @@ class Store {
         }catch (error){
             console.log(error)
         }
+    };
+
+    eventDone = async (event, callback) => {
+        try{
+            const res= await instance.put("event/done/"+event.id);
+            callback()
+        }catch (error){
+            callback(error)
+        }
     }
-};
+}
 
 decorate(Store, {
     events: observable
