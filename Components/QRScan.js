@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Button, Linking } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import instance from "./Stores/instance";
+import authStore from "./Stores/authStore";
 
 const QRScan = () => {
   const [hasPermission, setHasPermission] = useState(null);
@@ -15,9 +16,10 @@ const QRScan = () => {
   }, []);
 
   const getData = async (attendee_id) => {
+    console.log(attendee_id);
     try {
       let res = await instance.put(`event/attendees/checkin/${attendee_id}`);
-      alert("Checked in!");
+      alert(`Checked in!\nData: ${res.data}`);
     } catch (error) {
       console.log(error);
       alert(`Could not check in.\nError: ${error}`);

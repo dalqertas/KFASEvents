@@ -14,7 +14,7 @@ import {
 import styles from "./styles";
 import { withNavigation } from "react-navigation";
 
-const EventItem = ({ navigation }) => {
+const EventItem = ({ navigation, event }) => {
   const handlePress = () => navigation.navigate("EventDetailScreen");
   return (
       <TouchableOpacity onPress={handlePress} activeOpacity={1}>
@@ -32,15 +32,15 @@ const EventItem = ({ navigation }) => {
           <CardItem>
             <Left style={styles.textContainer}>
               <Text style={styles.eventHeader}>Date</Text>
-              <Text style={styles.eventInfo}>06 Feb 9:00 PM</Text>
+              <Text style={styles.eventInfo}>{event.date}</Text>
             </Left>
             <Body style={styles.textContainer}>
               <Text style={styles.eventHeader}>Location</Text>
-              <Text style={styles.eventInfo}>JACC</Text>
+              <Text style={styles.eventInfo}>{event.location}</Text>
             </Body>
             <Right style={styles.textContainer}>
               <Text style={styles.eventHeader}>Price</Text>
-              <Text style={styles.eventInfo}>Free</Text>
+              <Text style={styles.eventInfo}>{event.fee}</Text>
             </Right>
           </CardItem>
         </Card>
