@@ -15,7 +15,9 @@ import styles from "./styles";
 import HeaderButtons from "../Buttons/HeaderButtons";
 import QRScan from "../QRScan";
 
-const EventDetails = () => {
+const EventDetails = ({ navigation }) => {
+    const event = navigation.getParam("event");
+
     return (
         <Container>
             <ScrollView>
@@ -27,35 +29,37 @@ const EventDetails = () => {
                     style={{height: 500, width: null, flex: 1}}
                 ></ImageBackground>
 
-                <Text style={{fontWeight: "bold", fontSize: 20, margin: 25}}>This is a title</Text>
+                <Text style={{fontWeight: "bold", fontSize: 20, margin: 25}}>{event.title}</Text>
 
                 <Body style={{flexDirection: "row"}}>
                     <Body style={styles.textContainer}>
                         <Text style={styles.eventHeader}>Date</Text>
-                        <Text style={styles.eventInfo}>06 Feb 9:00 PM</Text>
+                        <Text style={styles.eventInfo}>{`${event.date.substring(5, 7)}/${event.date.substring(8)}`}</Text>
                     </Body>
                     <Body style={styles.textContainer}>
                         <Text style={styles.eventHeader}>Location</Text>
-                        <Text style={styles.eventInfo}>JACC</Text>
+                        <Text style={styles.eventInfo}>{event.location}</Text>
                     </Body>
                     <Body style={styles.textContainer}>
                         <Text style={styles.eventHeader}>Price</Text>
-                        <Text style={styles.eventInfo}>Free</Text>
+                        <Text style={styles.eventInfo}>{`${event.fee} K.D`}</Text>
                     </Body>
                 </Body>
 
-                <Text style={{fontSize: 15, margin: 25}}>This is a description.</Text>
+                <Text style={{fontSize: 15, margin: 25}}>{event.desc}</Text>
                 <Text style={{fontSize: 15, margin: 25}}>Organized By: </Text>
             </ScrollView>            
         </Container>
     );
 };
 
-EventDetails.navigationOptions = {
-    title: "",
-    headerRight: (
-        <HeaderButtons />
-    )
+EventDetails.navigationOptions = ({ navigation }) => {
+    return {
+        title: "",
+        headerRight: (
+            <HeaderButtons event={navigation.getParam("event")}/>
+        )
+    };
 }
 
 export default EventDetails;
