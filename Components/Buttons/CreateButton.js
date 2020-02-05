@@ -4,6 +4,7 @@ import { withNavigation } from "react-navigation";
 import styles from "./styles";
 import authStore from "../Stores/authStore";
 import { View } from "react-native";
+import { observer } from "mobx-react";
 
 const CreateButton = ({navigation}) => {
   return (
@@ -12,4 +13,4 @@ const CreateButton = ({navigation}) => {
     </View>
   );
 };
-export default withNavigation(CreateButton);
+export default withNavigation(observer(CreateButton));

@@ -38,7 +38,7 @@ class AuthStore {
       instance.defaults.headers.common.Authorization = `Bearer ${token}`;
       user = jwt_decode(token);
       console.log("i came here");
-      navigation.navigate('EventScreen')
+      navigation.navigate('userStackNav')
     } else {
         console.log("im here")
       await AsyncStorage.removeItem("token");
