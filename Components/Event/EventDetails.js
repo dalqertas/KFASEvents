@@ -13,7 +13,7 @@ import {
 } from "native-base";
 import styles from "./styles";
 import HeaderButtons from "../Buttons/HeaderButtons";
-import QRScan from "../QRScan";
+import authStore from "../Stores/authStore";
 
 const EventDetails = ({ navigation }) => {
     const event = navigation.getParam("event");
@@ -47,7 +47,9 @@ const EventDetails = ({ navigation }) => {
                 </Body>
 
                 <Text style={{fontSize: 15, margin: 25}}>{event.desc}</Text>
-                <Text style={{fontSize: 15, margin: 25}}>Organized By: </Text>
+                <Text style={{fontSize: 15, margin: 25}}>Organized By: {event.created_by.username}</Text>
+
+                {authStore.user == null && <Button title="Register" onPress={navigation.navigate("RegisterAttendee", {eventID: event.id})}/>}
             </ScrollView>            
         </Container>
     );

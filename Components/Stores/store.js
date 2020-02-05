@@ -23,7 +23,18 @@ class Store {
         } catch (error) {
             console.log(error);
         }
-    }
+    };
+
+    registerAttendee = async (attendee, eventID) => {
+        try {
+            const res = await instance.post(`event/register/${eventID}`, attendee);
+            console.log(res.data);
+            alert("Registered Successfully!");
+        } catch (error) {
+            console.log(error);
+            alert(`Error: ${error}`);
+        }
+    };
 };
 
 decorate(Store, {
