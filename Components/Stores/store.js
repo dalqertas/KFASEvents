@@ -15,6 +15,14 @@ class Store {
             console.log(error);
         }
     };
+    createEvent= async (eventData) => {
+        try{
+            const res= await instance.post("event/create",eventData)
+            this.events.push(res.data)
+        }catch (error){
+            console.log(error)
+        }
+    }
 };
 
 decorate(Store, {

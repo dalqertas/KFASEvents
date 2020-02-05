@@ -11,8 +11,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    margin:25,
-    
+    margin: 25
   },
   eventHeader: {
     fontSize: 13
@@ -24,19 +23,16 @@ const styles = StyleSheet.create({
     height: "50%",
     width: "100%"
   },
-  card:{
-      marginLeft:10,
-      marginRight:10
+  card: {
+    marginLeft: 10,
+    marginRight: 10
   },
   authContainer: {
     flex: 1,
     alignSelf: "stretch",
     justifyContent: "flex-start",
     alignItems: "center",
-    paddingRight: 32,
-    paddingLeft:32,
-    paddingTop:46,
-    backgroundColor:"#ECF0F1"
+    backgroundColor: "#ECF0F1"
   },
   authTextInput: {
     alignSelf: "stretch",
@@ -46,25 +42,23 @@ const styles = StyleSheet.create({
     color: "#9C67BD",
     //borderColor: "darkgray",
     //borderWidth: 1,
-    borderRadius:8,
-    padding:5,
-    paddingLeft:8,
-    fontSize:16,
-    backgroundColor:"white"
+    borderRadius: 8,
+    padding: 5,
+    paddingLeft: 8,
+    fontSize: 16,
+    backgroundColor: "white"
   },
-  container:{
+  container: {
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
     height: 40,
     borderRadius: 5,
-    backgroundColor:"white",
-    marginBottom:20
-
+    backgroundColor: "white",
+    marginBottom: 20
   },
-  otherInput:{
-
-    flex:1,
+  otherInput: {
+    flex: 1,
     alignSelf: "stretch",
     textAlign: "left",
     height: 40,
@@ -72,15 +66,14 @@ const styles = StyleSheet.create({
     color: "#9C67BD",
     //borderColor: "darkgray",
     //borderWidth: 1,
-    borderRadius:8,
-    padding:5,
-    paddingLeft:8,
-    fontSize:16,
-    
+    borderRadius: 8,
+    padding: 5,
+    paddingLeft: 8,
+    fontSize: 16
   },
   authTitle: {
     alignSelf: "stretch",
-    textAlign:"left",
+    textAlign: "left",
     color: "#9C67BD",
     fontSize: 24,
     marginBottom: 20,
@@ -92,33 +85,55 @@ const styles = StyleSheet.create({
     padding: 5,
     backgroundColor: "#9C67BD",
     marginBottom: 20,
-    borderRadius:8,
-    height:40
+    borderRadius: 8,
+    height: 40
   },
-  text:{
-    textAlign:"center",
-    padding:5,
-    color:"white",
-
+  text: {
+    textAlign: "center",
+    padding: 5,
+    color: "white"
   },
-  otherIcon:{
-    marginRight:8,
-    color:"#9C67BD",
-    fontSize:20
+  otherIcon: {
+    marginRight: 8,
+    color: "#9C67BD",
+    fontSize: 20
   },
-  description:{
+  description: {
     alignSelf: "stretch",
     textAlign: "left",
-    height: 40,
+    height: 100,
     marginBottom: 20,
     color: "#9C67BD",
     //borderColor: "darkgray",
     //borderWidth: 1,
-    borderRadius:8,
-    padding:5,
-    paddingLeft:8,
-    fontSize:16,
-    backgroundColor:"white"
+    borderRadius: 8,
+    padding: 5,
+    paddingLeft: 8,
+    fontSize: 16,
+    backgroundColor: "white"
+  },
+  scrollview: {
+    paddingRight: 32,
+    paddingLeft: 32,
+    paddingTop: 46,
+    alignSelf: "stretch"
+  },
+  smallInput: {
+    alignSelf: "stretch",
+    textAlign: "left",
+    height: 40,
+    marginBottom: 20,
+    marginLeft: 20,
+    marginRight: 20,
+    color: "#9C67BD",
+    //borderColor: "darkgray",
+    //borderWidth: 1,
+    borderRadius: 8,
+    padding: 5,
+    paddingLeft: 8,
+    fontSize: 16,
+    backgroundColor: "white",
+    width: 135
   }
 });
 export default styles;
