@@ -26,6 +26,8 @@ class Store {
     };
 
     registerAttendee = async (attendee, eventID) => {
+        console.log("Test");
+
         try {
             const res = await instance.post(`event/register/${eventID}`, attendee);
             console.log(res.data);

@@ -11,7 +11,7 @@ const userStackNav = createStackNavigator(
       EventDetailScreen:EventDetails,
       QRScan:QRScan,
       AttendeesList:AttendeesList,
-      RegisterAttendees:RegisterAttendee
+      RegisterAttendee:RegisterAttendee
     },
     {
       initialRouteName: "EventsList",

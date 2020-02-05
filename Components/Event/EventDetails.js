@@ -49,7 +49,7 @@ const EventDetails = ({ navigation }) => {
                 <Text style={{fontSize: 15, margin: 25}}>{event.desc}</Text>
                 <Text style={{fontSize: 15, margin: 25}}>Organized By: {event.created_by.username}</Text>
 
-                {authStore.user == null && <Button title="Register" onPress={navigation.navigate("RegisterAttendee", {eventID: event.id})}/>}
+                {authStore.user == null && <Button title="Register" onPress={() => navigation.navigate("RegisterAttendee", {eventID: event.id})}/>}
             </ScrollView>            
         </Container>
     );
