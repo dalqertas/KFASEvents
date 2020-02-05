@@ -2,42 +2,64 @@ import React, { Component } from "react";
 
 // Styling Components
 
-import { Image, TextInput, TouchableOpacity, View , ScrollView} from "react-native";
+import {
+  Image,
+  TextInput,
+  TouchableOpacity,
+  View,
+  ScrollView,
+  Modal,
+  TouchableHighlight
+} from "react-native";
 
 import DateTimePicker from "@react-native-community/datetimepicker";
 
-import { Text, Icon } from "native-base";
+import { Text, Icon, Left, Right } from "native-base";
 import styles from "./styles";
+import store from "../Stores/store";
 
 class CreateEvent extends Component {
   state = {
     title: "",
     desc: "",
     location: "",
-    date: new Date('2020-06-12T14:42:42'),
+    date: new Date("2020-06-12T14:42:42"),
     fee: "",
+    time: "",
     max_attendees: null,
     mode: "date",
-    show: false
+    show: false,
+    modalVisible: false
   };
+  setModalVisible(visible) {
+    this.setState({ modalVisible: visible });
+  }
   setDate = (event, date) => {
     date = date || this.state.date;
 
     this.setState({
-      show: Platform.OS === 'ios' ? true : false,
-      date,
+      show: Platform.OS === "ios" ? true : false,
+      date
     });
-  }
+  };
   show = mode => {
     this.setState({
       show: true,
-      mode,
+      mode
     });
-  }
+  };
   showDatepicker = () => {
-    this.show('date');
-  }
+    this.show("date");
+  };
+  showTimepicker = () => {
+    this.show("time");
+  };
+  hideDateTimePicker = () => this.setState({ show: false });
 
+  handleDatePicked = date => {
+    this.hideDateTimePicker(date);
+    this.setDate(date);
+  };
 
   handleChange = (name, text) => {
     console.log("TEXT", text);
@@ -47,69 +69,138 @@ class CreateEvent extends Component {
   render() {
     const { show, date, mode } = this.state;
     console.log(date);
-    console.log(show)
+    console.log(show);
     return (
-      
       <View style={styles.authContainer}>
-      <ScrollView style={{alignSelf:"stretch"}}>
-        <TextInput
-          style={styles.authTextInput}
-          placeholder="Event Name"
-          placeholderTextColor="#A6AEC1"
-          onChangeText={text => this.handleChange("title", text)}
-        />
-        <TextInput
-          style={styles.authTextInput}
-          placeholder="Location"
-          placeholderTextColor="#A6AEC1"
-          onChangeText={text => this.handleChange("title", text)}
-        />
-        <View style={styles.container}>
+        <ScrollView style={styles.scrollview}>
           <TextInput
-            style={styles.otherInput}
-            placeholder="Date"
-            placeholderTextColor="#A6AEC1"
-  
-            onChangeText={text => this.handleChange("title", text)}
-            onPress={this.showDatepicker}
-          />
-          <Icon
-            name="calendar"
-            type="FontAwesome"
-            style={styles.otherIcon}
-            onPress={this.showDatepicker}
-          />
-        </View>
-        <View style={styles.container}>
-          <TextInput
-            style={styles.otherInput}
-            placeholder="Time"
+            style={styles.authTextInput}
+            placeholder="Event Name"
             placeholderTextColor="#A6AEC1"
             onChangeText={text => this.handleChange("title", text)}
           />
-          <Icon
-            name="access-time"
-            type="MaterialIcons"
-            style={styles.otherIcon}
-            
+          <TextInput
+            style={styles.authTextInput}
+            placeholder="Location"
+            placeholderTextColor="#A6AEC1"
+            onChangeText={text => this.handleChange("location", text)}
           />
-        </View>
-        <TextInput
-          style={styles.authTextInput}
-          placeholder="Username"
-          placeholderTextColor="#A6AEC1"
-          onChangeText={text => this.handleChange("title", text)}
-        />
-        <TouchableOpacity style={styles.authTextBtn}>
-          <Text style={styles.text}>Create</Text>
-        </TouchableOpacity>
-        {show && <DateTimePicker value={date}
-                    mode={mode}
-                    is24Hour={true}
-                    display="default"
-                    onChange={this.setDate} 
-                    />
-        }
+          <View style={styles.container}>
+            <TextInput
+              style={styles.otherInput}
+              placeholder="Date"
+              placeholderTextColor="#A6AEC1"
+              onChangeText={text => this.handleChange("date", text)}
+              onPress={this.showDatepicker}
+            />
+            <Icon
+              name="calendar"
+              type="FontAwesome"
+              style={styles.otherIcon}
+              onPress={this.showDatepicker}
+            />
+          </View>
+          <View style={styles.container}>
+            <TextInput
+              style={styles.otherInput}
+              placeholder="Time"
+              placeholderTextColor="#A6AEC1"
+              onChangeText={text => this.handleChange("time", text)}
+            />
+            <Icon
+              name="access-time"
+              type="MaterialIcons"
+              style={styles.otherIcon}
+              onPress={this.showTimepicker}
+            />
+          </View>
+          <View
+            style={{
+              justifyContent: "center",
+              alignItems: "center",
+              alignSelf: "stretch",
+              flexDirection: "row"
+            }}
+          >
+            <TextInput
+              style={styles.smallInput}
+              placeholder="Max Attendees"
+              placeholderTextColor="#A6AEC1"
+              onChangeText={text => this.handleChange("max_attendees", text)}
+            />
+
+            <TextInput
+              style={styles.smallInput}
+              placeholder="Fee"
+              placeholderTextColor="#A6AEC1"
+              onChangeText={text => this.handleChange("fee", text)}
+            />
+          </View>
+          <TextInput
+            style={styles.description}
+            placeholder="Description"
+            placeholderTextColor="#A6AEC1"
+            onChangeText={text => this.handleChange("desc", text)}
+          />
+          <TouchableOpacity
+            style={styles.authTextBtn}
+            onPress={() =>
+              store.createEvent({
+                title:this.state.title,
+                desc:this.state.desc,
+                location:this.state.location,
+                date:this.state.date,
+                time:this.state.time,
+                max_attendees:this.state.max_attendees,
+                fee:this.state.fee
+              }
+              )
+            }
+          >
+            <Text style={styles.text}>Create</Text>
+          </TouchableOpacity>
+          {show && (
+            <DateTimePicker
+              value={date}
+              mode={mode}
+              minimumDate={new Date()}
+              is24Hour={true}
+              display="default"
+              onChange={this.setDate}
+              onConfirm={this.handleDatePicked}
+              onCancel={this.hideDateTimePicker}
+            />
+          )}
+          <Modal
+            animationType="slide"
+            transparent={true}
+            visible={this.state.modalVisible}
+            onRequestClose={() => {
+              Alert.alert("Modal has been closed.");
+            }}
+          >
+            <View style={{ marginTop: 500, height: 300 }}>
+              <View>
+                <Text>Hello World!</Text>
+
+                <TouchableHighlight
+                  onPress={() => {
+                    this.setModalVisible(!this.state.modalVisible);
+                  }}
+                >
+                  <Text>Hide Modal</Text>
+                </TouchableHighlight>
+              </View>
+            </View>
+          </Modal>
+
+          <TouchableHighlight
+            onPress={() => {
+              this.setModalVisible(true);
+            }}
+          >
+            <Text>Show Modal</Text>
+          </TouchableHighlight>
         </ScrollView>
       </View>
     );

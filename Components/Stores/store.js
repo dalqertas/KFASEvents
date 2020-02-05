@@ -15,11 +15,15 @@ class Store {
         }
     };
 
-    getAttendees = async (eventID) => {
+    getAttendees = async (eventID, callback) => {
+        console.log("getting attendees");
         try {
             const res = await instance.get(`event/attendees/${eventID}`);
             this.attendees[eventID] = res.data;
             console.log(this.attendees[eventID]);
+
+            callback();
+
         } catch (error) {
             console.log(error);
         }
@@ -37,6 +41,14 @@ class Store {
             alert(`Error: ${error}`);
         }
     };
+    createEvent= async (eventData) => {
+        try{
+            const res= await instance.post("event/create",eventData)
+            this.events.push(res.data)
+        }catch (error){
+            console.log(error)
+        }
+    }
 };
 
 decorate(Store, {

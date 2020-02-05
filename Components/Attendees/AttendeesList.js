@@ -1,23 +1,56 @@
-import React from "react";
+import React, { Component } from "react";
 import { View, Text } from "react-native";
 import AttendeeItem from "./AttendeeItem";
 import { observer } from "mobx-react";
 import store from "../Stores/store";
-import { List } from "native-base";
+import {Content, List} from "native-base";
 
-const AttendeesList = ({ navigation }) => {
-    const event = navigation.getParam("event");
-    let attendees = [];
+class AttendeesList extends Component {
 
-    store.getAttendees(event.id).then(() => {
-        attendees = store.attendees[event.id].map(itm => <AttendeeItem attendee={itm}/>);
-    });
-    
-    return (
-        <List>
-            {attendees}
-        </List>
-    );
-};
+    state = {
+        attendees: []
+    };
+
+    componentDidMount() {
+        const {navigation}=this.props;
+        const event = navigation.getParam("event");
+
+        store.getAttendees(event.id, () => {
+            console.log("got attendees");
+            console.log(store.attendees[event.id]);
+            this.setState({attendees: store.attendees[event.id]});
+        });
+    }
+
+    // showList = () => {
+    //     this.state.attendees.map(itm => <AttendeeItem attendee={itm} key={itm.id}/>)
+    // };
+
+    render() {
+        return (
+            <Content>
+                <List>
+                    {this.state.attendees.map(itm => <AttendeeItem attendee={itm} key={itm.id}/>)}
+                </List>
+            </Content>
+        );
+    }
+}
+
+// const AttendeesList = ({ navigation }) => {
+//
+//
+//     let attendees = [];
+//
+//     const attendees = () => {
+//
+//     }
+//
+//     const coffeeShopList = CoffeeStore.list.map(coffeeShop => (
+//         <CoffeeItem coffeeshop={coffeeShop} key={coffeeShop.id} />
+//     ));
+//
+//
+// };
 
 export default observer(AttendeesList);
