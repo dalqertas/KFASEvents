@@ -52,6 +52,32 @@ const styles = StyleSheet.create({
     fontSize:16,
     backgroundColor:"white"
   },
+  container:{
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    height: 40,
+    borderRadius: 5,
+    backgroundColor:"white",
+    marginBottom:20
+
+  },
+  otherInput:{
+
+    flex:1,
+    alignSelf: "stretch",
+    textAlign: "left",
+    height: 40,
+    marginBottom: 20,
+    color: "#9C67BD",
+    //borderColor: "darkgray",
+    //borderWidth: 1,
+    borderRadius:8,
+    padding:5,
+    paddingLeft:8,
+    fontSize:16,
+    
+  },
   authTitle: {
     alignSelf: "stretch",
     textAlign:"left",
@@ -67,7 +93,32 @@ const styles = StyleSheet.create({
     backgroundColor: "#9C67BD",
     marginBottom: 20,
     borderRadius:8,
-    color:"white"
+    height:40
+  },
+  text:{
+    textAlign:"center",
+    padding:5,
+    color:"white",
+
+  },
+  otherIcon:{
+    marginRight:8,
+    color:"#9C67BD",
+    fontSize:20
+  },
+  description:{
+    alignSelf: "stretch",
+    textAlign: "left",
+    height: 40,
+    marginBottom: 20,
+    color: "#9C67BD",
+    //borderColor: "darkgray",
+    //borderWidth: 1,
+    borderRadius:8,
+    padding:5,
+    paddingLeft:8,
+    fontSize:16,
+    backgroundColor:"white"
   }
 });
 export default styles;
