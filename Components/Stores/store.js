@@ -4,6 +4,7 @@ import instance from "./instance";
 class Store {
     events = [];
     attendees = {};
+    feedback = {};
 
     getEvents = async () => {
         try {
@@ -21,6 +22,21 @@ class Store {
             const res = await instance.get(`event/attendees/${eventID}`);
             this.attendees[eventID] = res.data;
             console.log(this.attendees[eventID]);
+
+            callback();
+
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    // TODO: requires api method
+    getFeedback = async (eventID, callback) => {
+        console.log("getting feedback");
+        try {
+            const res = await instance.get(`event/attendees/${eventID}`);
+            this.feedback[eventID] = res.data;
+            console.log(this.feedback[eventID]);
 
             callback();
 
@@ -53,7 +69,7 @@ class Store {
 
 decorate(Store, {
     events: observable
-})
+});
 
 const store = new Store();
 store.getEvents();

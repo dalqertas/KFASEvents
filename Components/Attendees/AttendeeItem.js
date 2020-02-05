@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text } from "react-native";
-import { ListItem, Icon } from "native-base";
+import { ListItem, Icon, Right, Left } from "native-base";
 
 const AttendeeItem = (props) => {
     console.log(props);
@@ -10,14 +10,13 @@ const AttendeeItem = (props) => {
     
     return (
         <ListItem style={{flexDirection: "row", margin: 20}}>
-            <Text>{attendee.first_name + " " + attendee.last_name}</Text>
-            {/*<Text>{attendee.did_attend}</Text>*/}
             {
                 attendee.did_attend ?
-                    <Icon name="check-circle" type="Feather"/>
+                    <Icon name="check-circle" type="Feather" style={{color: "green", fontSize: "18px"}}/>
                     :
-                    <Icon name="circle" type="Feather"/>
+                    <Icon name="circle" type="Feather" style={{color: "lightgray", fontSize: "18px"}}/>
             }
+            <Text style={{marginLeft: 10}}>{attendee.first_name + " " + attendee.last_name}</Text>
 
         </ListItem>
     );
