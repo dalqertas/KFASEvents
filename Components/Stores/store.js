@@ -15,11 +15,15 @@ class Store {
         }
     };
 
-    getAttendees = async (eventID) => {
+    getAttendees = async (eventID, callback) => {
+        console.log("getting attendees");
         try {
             const res = await instance.get(`event/attendees/${eventID}`);
             this.attendees[eventID] = res.data;
             console.log(this.attendees[eventID]);
+
+            callback();
+
         } catch (error) {
             console.log(error);
         }

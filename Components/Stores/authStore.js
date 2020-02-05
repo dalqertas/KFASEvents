@@ -37,7 +37,7 @@ class AuthStore {
       await AsyncStorage.setItem("token", token);
       instance.defaults.headers.common.Authorization = `Bearer ${token}`;
       user = jwt_decode(token);
-      console.log("i came here");
+      console.log("set current user");
       navigation.navigate('EventScreen')
     } else {
         console.log("im here")
