@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Button, Linking } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
-import axios from "axios";
+import instance from "./Stores/instance";
 
 const QRScan = () => {
   const [hasPermission, setHasPermission] = useState(null);
@@ -16,7 +16,7 @@ const QRScan = () => {
 
   const getData = async (attendee_id) => {
     try {
-      let res = await axios.put(`http://event-managment-coded.herokuapp.com/event/attendees/checkin/${attendee_id}`);
+      let res = await instance.put(`event/attendees/checkin/${attendee_id}`);
       alert("Checked in!");
     } catch (error) {
       console.log(error);
