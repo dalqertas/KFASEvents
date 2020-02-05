@@ -16,10 +16,11 @@ const QRScan = () => {
 
   const getData = async (attendee_id) => {
     try {
-      let res = await axios.get(`event/attendees/checkin/${attendee_id}`);
-      console.log(res.data);
+      let res = await axios.put(`event/attendees/checkin/${attendee_id}`);
+      alert("Checked in!");
     } catch (error) {
       console.log(error);
+      alert(`Could not check in.\nError: ${error}`);
     }
   }
 
