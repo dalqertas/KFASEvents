@@ -1,5 +1,5 @@
 import React from "react";
-import { Image, ImageBackground, View, ScrollView, Button } from "react-native";
+import { Image, ImageBackground, View, ScrollView, Button, TouchableOpacity } from "react-native";
 import {
   Container,
   Header,
@@ -49,7 +49,11 @@ const EventDetails = ({ navigation }) => {
                 <Text style={{fontSize: 15, margin: 25}}>{event.desc}</Text>
                 <Text style={{fontSize: 15, margin: 25}}>Organized By: {event.created_by.username}</Text>
 
-                {authStore.user == null && <Button title="Register" onPress={() => navigation.navigate("RegisterAttendee", {eventID: event.id})}/>}
+                <View style={{...styles.authContainer, backgroundColor: "white"}}>
+                    {authStore.user == null && <TouchableOpacity style={styles.authTextBtn} onPress={() => navigation.navigate("RegisterAttendee", {eventID: event.id})}>
+                        <Text style={styles.text}>Register</Text>
+                    </TouchableOpacity>}
+                </View>
             </ScrollView>            
         </Container>
     );

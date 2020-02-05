@@ -5,11 +5,11 @@ import styles from "./styles";
 import authStore from "../Stores/authStore";
 import { View } from "react-native";
 
-const CreateButton = ({navigation}) => {
+const LoginButton = ({navigation}) => {
   return (
     <View>
-      {authStore.user != null && <Icon name="ios-add" type="Ionicons" style={styles.cartIcon} onPress={()=>navigation.navigate("CreateEventScreen")}/>}
+      {authStore.user == null && <Icon name="user-circle" type="FontAwesome" style={{marginLeft:20, color:"lightgray"}} onPress={()=>navigation.navigate("LoginScreen")}/>}
     </View>
   );
 };
-export default withNavigation(CreateButton);
+export default withNavigation(LoginButton);
