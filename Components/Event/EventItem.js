@@ -15,7 +15,7 @@ import styles from "./styles";
 import { withNavigation } from "react-navigation";
 
 const EventItem = ({ navigation, event }) => {
-  const handlePress = () => navigation.navigate("EventDetailScreen");
+  const handlePress = () => navigation.navigate("EventDetailScreen", {event: event});
   return (
       <TouchableOpacity onPress={handlePress} activeOpacity={1}>
         <Card style={styles.card}>
@@ -32,7 +32,7 @@ const EventItem = ({ navigation, event }) => {
           <CardItem>
             <Left style={styles.textContainer}>
               <Text style={styles.eventHeader}>Date</Text>
-              <Text style={styles.eventInfo}>{event.date}</Text>
+              <Text style={styles.eventInfo}>{`${event.date.substring(5, 7)}/${event.date.substring(8)}`}</Text>
             </Left>
             <Body style={styles.textContainer}>
               <Text style={styles.eventHeader}>Location</Text>
@@ -40,7 +40,7 @@ const EventItem = ({ navigation, event }) => {
             </Body>
             <Right style={styles.textContainer}>
               <Text style={styles.eventHeader}>Price</Text>
-              <Text style={styles.eventInfo}>{event.fee}</Text>
+              <Text style={styles.eventInfo}>{`${event.fee} K.D`}</Text>
             </Right>
           </CardItem>
         </Card>
