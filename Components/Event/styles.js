@@ -3,7 +3,7 @@ const styles = StyleSheet.create({
   eventInfo: {
     color: "#9C67BD",
     fontWeight: "bold",
-    fontSize: 20,
+    fontSize: 16,
     textAlign: "center"
   },
   textContainer: {
@@ -11,11 +11,11 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    margin:15,
+    margin:25,
     
   },
   eventHeader: {
-    fontSize: 14
+    fontSize: 13
   },
   overlay: {
     justifyContent: "flex-end",

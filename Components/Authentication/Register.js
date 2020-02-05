@@ -46,10 +46,9 @@ class Register extends Component {
           secureTextEntry={true}
           onChangeText={text => this.handleChange("password", text)}
         />
-        <TouchableOpacity style={styles.authButton}>
+        <TouchableOpacity style={styles.authButton} onPress={() => authStore.register(this.state,this.props.navigation)}>
           <Text
             style={styles.authButtonText}
-            onPress={() => authStore.register(this.state,this.props.navigation)}
           >
             Sign up
           </Text>
