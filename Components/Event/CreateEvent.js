@@ -32,7 +32,7 @@ class CreateEvent extends Component {
     modalVisible: false
   };
   setModalVisible(visible) {
-    this.setState({ modalVisible: visible });
+    this.setState({ show: visible });
   }
   setDate = (event, date) => {
     date = date || this.state.date;
@@ -54,7 +54,7 @@ class CreateEvent extends Component {
   showTimepicker = () => {
     this.show("time");
   };
-  hideDateTimePicker = () => this.setState({ show: false });
+ 
 
   handleDatePicked = date => {
     this.hideDateTimePicker(date);
@@ -159,33 +159,29 @@ class CreateEvent extends Component {
           >
             <Text style={styles.text}>Create</Text>
           </TouchableOpacity>
-          {show && (
-            <DateTimePicker
-              value={date}
-              mode={mode}
-              minimumDate={new Date()}
-              is24Hour={true}
-              display="default"
-              onChange={this.setDate}
-              onConfirm={this.handleDatePicked}
-              onCancel={this.hideDateTimePicker}
-            />
-          )}
+
           <Modal
             animationType="slide"
             transparent={true}
-            visible={this.state.modalVisible}
+            visible={this.state.show}
             onRequestClose={() => {
               Alert.alert("Modal has been closed.");
             }}
           >
             <View style={{ marginTop: 500, height: 300 }}>
               <View>
-                <Text>Hello World!</Text>
+              <DateTimePicker
+              value={date}
+              mode={mode}
+              minimumDate={new Date()}
+              is24Hour={true}
+              display="default"
+              onChange={this.setDate}
+            />
 
                 <TouchableHighlight
                   onPress={() => {
-                    this.setModalVisible(!this.state.modalVisible);
+                    this.setModalVisible(!this.state.show);
                   }}
                 >
                   <Text>Hide Modal</Text>
