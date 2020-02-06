@@ -1,17 +1,17 @@
 import {createSwitchNavigator} from "react-navigation";
 import Login from "../Authentication/Login";
 import Register from "../Authentication/Register";
-import organizerStackNav from "./organizerStackNav";
+import userStackNav from "./userStackNav";
 
 
 const authSwitchNav = createSwitchNavigator(
   {
     LoginScreen: Login,
     RegisterScreen: Register,
-    organizerStackNav:organizerStackNav
+    userStackNav:userStackNav
   },
   {
-    initialRouteName: "LoginScreen",
+    initialRouteName: "userStackNav",
     defaultNavigationOptions: {
       headerTintColor: "#9C67BD",
       headerTitleStyle: {

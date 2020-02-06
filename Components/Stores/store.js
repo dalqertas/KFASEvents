@@ -4,6 +4,7 @@ import instance from "./instance";
 class Store {
     events = [];
     attendees = {};
+    feedback = {};
 
     getEvents = async () => {
         try {
@@ -21,6 +22,24 @@ class Store {
             const res = await instance.get(`event/attendees/${eventID}`);
             this.attendees[eventID] = res.data;
             console.log(this.attendees[eventID]);
+
+            callback();
+
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    // TODO: requires api method
+    getFeedback = async (eventID, callback) => {
+        console.log("getting feedback");
+        try {
+            const res = await instance.get(`feedback/${eventID}`);
+            const validFeedbacks = res.data.filter(feedback => {
+                return feedback.rating !== null && feedback.comment !== null
+            });
+            this.feedback[eventID] = validFeedbacks;
+            console.log(this.feedback[eventID]);
 
             callback();
 
@@ -48,12 +67,21 @@ class Store {
         }catch (error){
             console.log(error)
         }
+    };
+
+    eventDone = async (event, callback) => {
+        try{
+            const res= await instance.put("event/done/"+event.id);
+            callback()
+        }catch (error){
+            callback(error)
+        }
     }
-};
+}
 
 decorate(Store, {
     events: observable
-})
+});
 
 const store = new Store();
 store.getEvents();

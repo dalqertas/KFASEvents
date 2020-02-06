@@ -4,14 +4,18 @@ import EventDetails from "../Event/EventDetails";
 import QRScan from "../QRScan";
 import AttendeesList from "../Attendees/AttendeesList";
 import RegisterAttendee from "../Attendees/RegisterAttendee";
+import FeedbackList from "../Event/FeedbackList";
+import CreateEvent from "../Event/CreateEvent";
 
 const userStackNav = createStackNavigator(
     {
-      EventsList:EventsList,
-      EventDetailScreen:EventDetails,
-      QRScan:QRScan,
-      AttendeesList:AttendeesList,
-      RegisterAttendee:RegisterAttendee
+        EventsList:EventsList,
+        EventDetailScreen:EventDetails,
+        QRScan:QRScan,
+        CreateEventScreen:CreateEvent,
+        AttendeesList:AttendeesList,
+        RegisterAttendee:RegisterAttendee,
+        FeedbackListScreen:FeedbackList,
     },
     {
       initialRouteName: "EventsList",

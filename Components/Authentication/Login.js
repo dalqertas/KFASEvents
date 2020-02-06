@@ -6,7 +6,6 @@ import { Image, TextInput, TouchableOpacity, View } from "react-native";
 import { Text } from "native-base";
 import styles from "./styles";
 import authStore from "../Stores/authStore";
-import organizerStackNav from "../Navigation/organizerStackNav";
 
 
 class Login extends Component {
@@ -41,6 +40,7 @@ class Login extends Component {
           <Text style={styles.authButtonText}>Log in</Text>
         </TouchableOpacity>
         <Text style={styles.authOther} onPress= {() => navigation.navigate("RegisterScreen")}>Click here to register!</Text>
+        <Text style={styles.authOther} onPress= {() => navigation.navigate("userStackNav")}>Back to events list</Text>
       </View>
     );
   }
