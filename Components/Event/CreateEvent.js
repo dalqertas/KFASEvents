@@ -54,12 +54,7 @@ class CreateEvent extends Component {
   showTimepicker = () => {
     this.show("time");
   };
- 
 
-  handleDatePicked = date => {
-    this.hideDateTimePicker(date);
-    this.setDate(date);
-  };
 
   handleChange = (name, text) => {
     console.log("TEXT", text);
@@ -68,7 +63,7 @@ class CreateEvent extends Component {
   };
   render() {
     const { show, date, mode } = this.state;
-    console.log(date);
+    console.log(date.toISOString().substring(11,16));
     console.log(show);
     return (
       <View style={styles.authContainer}>
@@ -146,15 +141,14 @@ class CreateEvent extends Component {
             style={styles.authTextBtn}
             onPress={() =>
               store.createEvent({
-                title:this.state.title,
-                desc:this.state.desc,
-                location:this.state.location,
-                date:this.state.date,
-                time:this.state.time,
-                max_attendees:this.state.max_attendees,
-                fee:this.state.fee
-              }
-              )
+                title: this.state.title,
+                desc: this.state.desc,
+                location: this.state.location,
+                date: this.state.date.toISOString().substring(0,10),
+                time: this.state.time,
+                max_attendees: this.state.max_attendees,
+                fee: this.state.fee
+              })
             }
           >
             <Text style={styles.text}>Create</Text>
@@ -168,35 +162,27 @@ class CreateEvent extends Component {
               Alert.alert("Modal has been closed.");
             }}
           >
-            <View style={{ marginTop: 500, height: 300 }}>
-              <View>
-              <DateTimePicker
-              value={date}
-              mode={mode}
-              minimumDate={new Date()}
-              is24Hour={true}
-              display="default"
-              onChange={this.setDate}
-            />
-
-                <TouchableHighlight
+            <View style={styles.modalView}>
+            <TouchableHighlight
+                  style={styles.selectBtn}
                   onPress={() => {
                     this.setModalVisible(!this.state.show);
                   }}
                 >
-                  <Text>Hide Modal</Text>
+                  <Text style={styles.selectText}>Select</Text>
                 </TouchableHighlight>
+              <View>
+                <DateTimePicker
+                  value={date}
+                  mode={mode}
+                  minimumDate={new Date()}
+                  is24Hour={true}
+                  display="default"
+                  onChange={this.setDate}
+                />
               </View>
             </View>
           </Modal>
-
-          <TouchableHighlight
-            onPress={() => {
-              this.setModalVisible(true);
-            }}
-          >
-            <Text>Show Modal</Text>
-          </TouchableHighlight>
         </ScrollView>
       </View>
     );
