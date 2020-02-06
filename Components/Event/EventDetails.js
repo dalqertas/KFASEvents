@@ -95,7 +95,7 @@ EventDetails.navigationOptions = ({ navigation }) => {
         title: "",
         headerRight: (
             <HeaderButtons event={navigation.getParam("event")}/>
-        )
+        ),
     };
 };
 

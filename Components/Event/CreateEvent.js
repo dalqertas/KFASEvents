@@ -14,7 +14,7 @@ import {
 
 import DateTimePicker from "@react-native-community/datetimepicker";
 
-import { Text, Icon, Left, Right } from "native-base";
+import { Text, Icon, Left, Right ,Button} from "native-base";
 import styles from "./styles";
 import store from "../Stores/store";
 
@@ -23,7 +23,7 @@ class CreateEvent extends Component {
     title: "",
     desc: "",
     location: "",
-    date: new Date("2020-06-12T14:42:42"),
+    date: new Date(),
     fee: "",
     time: "",
     max_attendees: null,
@@ -62,8 +62,10 @@ class CreateEvent extends Component {
     this.setState({ [name]: text });
   };
   render() {
+    const {navigation} = this.props;
     const { show, date, mode } = this.state;
-    console.log(date.toISOString().substring(11,16));
+    console.log("time",date.toTimeString().substring(0,5));
+    console.log("date",date.toISOString().substring(0,5));
     console.log(show);
     return (
       <View style={styles.authContainer}>
@@ -81,9 +83,10 @@ class CreateEvent extends Component {
             onChangeText={text => this.handleChange("location", text)}
           />
           <View style={styles.container}>
-            <TextInput
+
+          <TextInput
               style={styles.otherInput}
-              placeholder="Date"
+              placeholder={this.state.date.toDateString()}
               placeholderTextColor="#A6AEC1"
               onChangeText={text => this.handleChange("date", text)}
               onPress={this.showDatepicker}
@@ -98,7 +101,7 @@ class CreateEvent extends Component {
           <View style={styles.container}>
             <TextInput
               style={styles.otherInput}
-              placeholder="Time"
+              placeholder={this.state.date.toLocaleTimeString()}
               placeholderTextColor="#A6AEC1"
               onChangeText={text => this.handleChange("time", text)}
             />
@@ -145,10 +148,10 @@ class CreateEvent extends Component {
                 desc: this.state.desc,
                 location: this.state.location,
                 date: this.state.date.toISOString().substring(0,10),
-                time: this.state.time,
+                time: this.state.date.toTimeString().substring(0,5),
                 max_attendees: this.state.max_attendees,
                 fee: this.state.fee
-              })
+              },navigation)
             }
           >
             <Text style={styles.text}>Create</Text>
@@ -187,5 +190,10 @@ class CreateEvent extends Component {
       </View>
     );
   }
+}
+CreateEvent.navigationOptions=()=>{
+return{
+  title:"Create Event"
+}
 }
 export default CreateEvent;

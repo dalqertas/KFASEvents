@@ -5,12 +5,14 @@ class Store {
     events = [];
     attendees = {};
     feedback = {};
+    loading = true;
 
     getEvents = async () => {
         try {
             const res = await instance.get("event");
             this.events = res.data;
             console.log(this.events);
+            this.loading=false;
         } catch (error) {
             console.log(error);
         }
@@ -60,10 +62,14 @@ class Store {
             alert(`Error: ${error}`);
         }
     };
-    createEvent= async (eventData) => {
+    createEvent= async (eventData,navigation) => {
+        console.log(navigation);
+        
         try{
             const res= await instance.post("event/create",eventData)
-            this.events.push(res.data)
+            this.events.unshift(res.data)
+            navigation.navigate('EventsList');
+            console.log("success");
         }catch (error){
             console.log(error)
         }

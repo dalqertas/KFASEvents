@@ -8,7 +8,7 @@ import { observer } from "mobx-react";
 const LoginButton = ({navigation}) => {
   return (
     <View>
-      {!authStore.user ? <Icon name="user-circle" type="FontAwesome" style={{marginLeft:20, color:"lightgray"}} onPress={()=>navigation.navigate("LoginScreen")}/> : <Icon name="poweroff" type="AntDesign" style={{marginLeft:20, color:"lightgray"}} onPress={()=>authStore.logout()}/>}
+      {!authStore.user ? <Icon name="user" type="AntDesign" style={{marginLeft:20, color:"lightgray",fontSize:22}} onPress={()=>navigation.navigate("LoginScreen")}/> : <Icon name="logout" type="SimpleLineIcons" style={{marginLeft:20, color:"lightgray",fontSize:22}} onPress={()=>authStore.logout()}/>}
     </View>
   );
 };

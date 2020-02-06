@@ -26,7 +26,10 @@ const EventItem = ({ navigation, event }) => {
                   "https://www.amevents.com/wp-content/uploads/2018/05/banner-1.jpg"
               }}
               style={{height: 200, width: null, flex: 1}}
-            ></ImageBackground>
+            >
+              <Text style={styles.eventTitle}>{event.title}</Text>
+            </ImageBackground>
+            
           </CardItem>
 
           <CardItem>

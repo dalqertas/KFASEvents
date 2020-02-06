@@ -25,7 +25,8 @@ const styles = StyleSheet.create({
   },
   card: {
     marginLeft: 10,
-    marginRight: 10
+    marginRight: 10,
+    justifyContent: "flex-end"
   },
   authContainer: {
     flex: 1,
@@ -139,22 +140,25 @@ const styles = StyleSheet.create({
     backgroundColor: "#262626",
     marginTop: 530,
     height: 300,
-    opacity:0.97
+    opacity: 0.97
   },
-  selectBtn:{
-    marginBottom:20,
-
-    
+  selectBtn: {
+    marginBottom: 20
   },
-  selectText:{
-    textAlign:"right",
-    color:"white",
-    fontSize:20,
-    marginTop:10,
-    marginRight:15,
-    
-    
+  selectText: {
+    textAlign: "right",
+    color: "white",
+    fontSize: 20,
+    marginTop: 10,
+    marginRight: 15
   },
-
+  eventTitle: {
+    position: "relative",
+    alignSelf: "flex-start",
+    color: "white",
+    marginTop: 175,
+    marginLeft: 10,
+    fontWeight: "bold",
+  }
 });
 export default styles;

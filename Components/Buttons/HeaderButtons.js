@@ -7,9 +7,9 @@ const HeaderButtons = ({ navigation, event }) => {
     return (
         <View>
             {authStore.user != null && authStore.user.user_id === event.created_by.id ?
-                <View style={{flexDirection: "row"}}>
-                    <Button title="Scan" onPress={() => navigation.navigate("QRScan")} />
-                    <Button title="Attendees" onPress={() => navigation.navigate("AttendeesList", {event: event})}/>
+                <View style={{flexDirection: "row",color:"#9C67BD"}}>
+                    <Button title="Scan" onPress={() => navigation.navigate("QRScan")}  color="#9C67BD"/>
+                    <Button title="Attendees" onPress={() => navigation.navigate("AttendeesList", {event: event})} color="#9C67BD"/>
                 </View>
                 :
                 <></>
